@@ -9,40 +9,55 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 30px;
+  gap: 10px;
 }
 
 /* Input + search */
 .input-group {
   display: flex;
   justify-content: space-between;
-  gap: 30px;
+  /* gap: 30px; */
+  margin: 0 auto;
+  width: 600px;
 }
 
 input {
+  margin: 0;
+  border-radius: 10px;
   height: 40px;
-  width: auto;
+  width: 450px;
+}
+
+button {
+  margin: 0;
+  border-radius: 10px;
+  height: 100%;
+  width: 120px;
 }
 
 /* Weather box popping up */
 .main-weather-box {
   background-color: white;
   color: black;
-  height: 300px;
-  width: 500px;
+  border-radius: 10px;
+  height: auto;
+  width: 600px;
+  margin: 0 auto; /* center block */
 }
 
 .next-day-box-group {
   display: flex;
-  gap: 20px;
+  justify-content: space-between;
+  gap: 10px;
   color: black;
   height: 300px;
-  width: 500px;
+  width: 600px;
 }
 
 .next-day-box {
   background-color: white;
   color: black;
-  height: 100px;
-  width: 100px;
+  border-radius: 10px;
+  height: auto;
+  width: 100%;
 }
