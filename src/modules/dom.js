@@ -1,9 +1,11 @@
-export const input = document.querySelector('#location-input');
+export const input = document.querySelector("#location-input");
 
-export const Render = {
-  updateWeather(data) {},
-
-  showError(message) {},
-
-  clearError() {}
+export function updateWeather(data) {
+  console.log(data);
 }
+
+export function showError() {
+  console.log('Error');
+}
+
+export function clearError() {}
