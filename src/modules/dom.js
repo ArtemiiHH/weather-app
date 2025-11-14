@@ -32,20 +32,22 @@ export function updateWeather(data) {
   const nextDayBoxGroup = document.createElement("div");
   nextDayBoxGroup.classList.add("next-day-box-group");
 
-  const boxOne = document.createElement("div");
-  boxOne.classList.add("next-day-box");
+  // Loop through next 5 days
+  for (let i = 1; i <= 5; i++) {
+    const box = document.createElement("div");
+    box.classList.add("next-day-box");
 
-  const boxTwo = document.createElement("div");
-  boxTwo.classList.add("next-day-box");
+    const day = document.createElement("p");
+    day.classList.add("small-day-date");
+    day.textContent = data.days[i].datetime;
 
-  const boxThree = document.createElement("div");
-  boxThree.classList.add("next-day-box");
+    const temp = document.createElement("p");
+    temp.classList.add("small-day-temp");
+    temp.textContent = `${data.days[i].temp} °C`;
 
-  const boxFour = document.createElement("div");
-  boxFour.classList.add("next-day-box");
-
-  const boxFive = document.createElement("div");
-  boxFive.classList.add("next-day-box");
+    box.append(day, temp);
+    nextDayBoxGroup.appendChild(box);
+  }
 
   // Append elements
   mainWeatherBox.append(
@@ -56,7 +58,7 @@ export function updateWeather(data) {
     feelsLike,
     uvIndex
   );
-  nextDayBoxGroup.append(boxOne, boxTwo, boxThree, boxFour, boxFive);
+
   content.appendChild(mainWeatherBox);
   content.appendChild(nextDayBoxGroup);
 }
