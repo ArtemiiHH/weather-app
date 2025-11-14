@@ -1,7 +1,7 @@
 export async function getWeather(city) {
   try {
     const response = await fetch(
-      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?key=FWRFKQ837QJ9VNNBZK4DKNPY6`
+      `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${city}?unitGroup=metric&key=FWRFKQ837QJ9VNNBZK4DKNPY6`
     );
 
     // Error handling
