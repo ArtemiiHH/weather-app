@@ -1,4 +1,4 @@
-import { input, input } from "./dom";
+import { input } from "./dom";
 import { getWeather } from "./api";
 
 export async function events() {
