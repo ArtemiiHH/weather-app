@@ -31,3 +31,18 @@ input {
   height: 300px;
   width: 500px;
 }
+
+.next-day-box-group {
+  display: flex;
+  gap: 20px;
+  color: black;
+  height: 300px;
+  width: 500px;
+}
+
+.next-day-box {
+  background-color: white;
+  color: black;
+  height: 100px;
+  width: 100px;
+}
