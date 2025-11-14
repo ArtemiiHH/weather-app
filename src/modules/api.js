@@ -1,11 +1,6 @@
-async function getWeather() {
-  const url = await fetch(
-    "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Moscow?unitGroup=us&key=FWRFKQ837QJ9VNNBZK4DKNPY6&contentType=json"
-  );
+const input = document.querySelector("#location-input");
+const API_KEY = "FWRFKQ837QJ9VNNBZK4DKNPY6";
 
-  const urls = await url.json();
-
-  console.log(urls);
-}
+async function getWeather(city) {}
 
 export { getWeather };
