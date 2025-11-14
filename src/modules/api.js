@@ -1,6 +1,16 @@
-const input = document.querySelector("#location-input");
-const API_KEY = "FWRFKQ837QJ9VNNBZK4DKNPY6";
+export async function getWeather(city) {
+  try {
+    const response = await fetch(
+      "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/Moscow?unitGroup=metric&key=FWRFKQ837QJ9VNNBZK4DKNPY6&contentType=json"
+    );
+    const data = await response.json();
 
-async function getWeather(city) {}
+    if (!response.ok) {
+      throw new Error("City or location was not found.");
+    }
 
-export { getWeather };
+    return data;
+  } catch (error) {
+    console.error(error.message);
+  }
+}
