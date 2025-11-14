@@ -1,0 +1,1 @@
+export const input = document.querySelector('#location-input');
