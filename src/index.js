@@ -1,7 +1,4 @@
 import "./styles.css";
-import { input } from "./modules/dom";
-import { getWeather } from "./modules/api";
+import { events } from "./modules/events";
 
-const city = input.value;
-
-getWeather(city);
+events();
