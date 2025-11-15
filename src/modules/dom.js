@@ -1,18 +1,25 @@
 export const input = document.querySelector("#location-input");
 const content = document.querySelector("#container");
 
-// Clear ONLY the weather UI, not input/buttons
+// --- Helper: Format date to "Nov 14" ---
+function formatShortDate(dateString) {
+  const date = new Date(dateString);
+  const options = { month: "short", day: "numeric" };
+  return date.toLocaleDateString("en-US", options);
+}
+
+// --- Clear ONLY previous weather UI ---
 export function clearWeather() {
   const oldWeather = document.querySelector(".weather-wrapper");
   if (oldWeather) oldWeather.remove();
 }
 
-// Display Weather UI
+// --- Display Weather UI ---
 export function updateWeather(data) {
-  // Remove previous weather UI
+  // Remove previous weather results
   clearWeather();
 
-  // Create a wrapper for ALL weather elements
+  // Create wrapper for all weather UI
   const wrapper = document.createElement("div");
   wrapper.classList.add("weather-wrapper");
 
@@ -26,21 +33,21 @@ export function updateWeather(data) {
 
   const currentDate = document.createElement("p");
   currentDate.classList.add("current-date");
-  currentDate.textContent = data.days[0].datetime;
+  currentDate.textContent = formatShortDate(data.days[0].datetime);
 
   const degrees = document.createElement("h1");
-  degrees.textContent = `${data.currentConditions.temp} °C`;
+  degrees.textContent = `${Math.round(data.currentConditions.temp)} °C`;
 
   const humidity = document.createElement("p");
-  humidity.textContent = `Humidity: ${data.currentConditions.humidity}%`;
+  humidity.textContent = `Humidity: ${Math.round(data.currentConditions.humidity)}%`;
 
   const feelsLike = document.createElement("p");
-  feelsLike.textContent = `Feels like: ${data.currentConditions.feelslike}`;
+  feelsLike.textContent = `Feels like: ${Math.round(data.currentConditions.feelslike)}°C`;
 
   const uvIndex = document.createElement("p");
-  uvIndex.textContent = `UV-index: ${data.currentConditions.uvindex}`;
+  uvIndex.textContent = `UV-index: ${Math.round(data.currentConditions.uvindex)}`;
 
-  // ----- Next day boxes -----
+  // ----- Next 5 days box group -----
   const nextDayBoxGroup = document.createElement("div");
   nextDayBoxGroup.classList.add("next-day-box-group");
 
@@ -49,16 +56,18 @@ export function updateWeather(data) {
     box.classList.add("next-day-box");
 
     const day = document.createElement("p");
-    day.textContent = data.days[i].datetime;
+    day.classList.add("small-day-date");
+    day.textContent = formatShortDate(data.days[i].datetime);
 
     const temp = document.createElement("p");
-    temp.textContent = `${data.days[i].temp} °C`;
+    temp.classList.add("small-day-temp");
+    temp.textContent = `${Math.round(data.days[i].temp)} °C`;
 
     box.append(day, temp);
     nextDayBoxGroup.appendChild(box);
   }
 
-  // Append to wrapper
+  // Append main and small boxes to wrapper
   mainWeatherBox.append(
     location,
     currentDate,
@@ -70,10 +79,11 @@ export function updateWeather(data) {
 
   wrapper.append(mainWeatherBox, nextDayBoxGroup);
 
-  // Add wrapper to container BELOW your input + button
+  // Add wrapper to page
   content.appendChild(wrapper);
 }
 
+// --- Error UI ---
 export function showError(message = "Invalid location.") {
   clearWeather();
 

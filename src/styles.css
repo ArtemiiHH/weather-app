@@ -36,7 +36,7 @@ input {
   border-radius: 10px;
   border: 1px solid white;
   height: 50px;
-  width: 450px;
+  width: 460px;
   font-size: 1.2rem;
 }
 
@@ -44,18 +44,12 @@ input::placeholder {
   color: rgba(255, 255, 255, 0.5);
 }
 
-input::after {
-  background-color: #2b2b2b;
-  color: white;
-  /* font-size: 1.2rem; */
-}
-
 button {
   margin: 0;
   border-radius: 10px;
   border: none;
   height: 100%;
-  width: 120px;
+  width: 130px;
   background-color: rgb(26, 175, 255);
   color: white;
   font-size: 1.2rem;
@@ -64,6 +58,13 @@ button {
 button:hover {
   opacity: 0.7;
 }
+
+.weather-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
 /* Weather box popping up */
 .main-weather-box {
   background: #000000;
