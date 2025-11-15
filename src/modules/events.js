@@ -1,22 +1,23 @@
 import { input, showError, updateWeather } from "./dom";
 import { getWeather } from "./api";
 
-// Validate inputs here, later
-
 // Events function
 export function events() {
   document.querySelector(".search-btn").addEventListener("click", async () => {
-    // Input value
-    const city = input.value;
-    // Wait for data
+    const city = input.value.trim();
+
+    if (city.length === 0 || /^\d+$/.test(city) || city.length < 2) {
+      alert("Enter a valid location.");
+      return;
+    }
+
     const data = await getWeather(city);
 
-    // If API doesnt return valid data:
-    if (!data || data === null) {
+    if (!data) {
       showError();
-    } else {
-      // If it does, update DOM module with it
-      updateWeather(data);
+      return;
     }
+
+    updateWeather(data);
   });
 }
