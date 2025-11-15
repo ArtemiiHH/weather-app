@@ -24,9 +24,8 @@ body {
 .input-group {
   display: flex;
   justify-content: space-between;
-  /* gap: 30px; */
   margin: 0 auto;
-  width: 600px;
+  width: 620px;
 }
 
 input {
@@ -48,7 +47,7 @@ input::placeholder {
 input::after {
   background-color: #2b2b2b;
   color: white;
-  font-size: 1.2rem;
+  /* font-size: 1.2rem; */
 }
 
 button {
@@ -62,6 +61,9 @@ button {
   font-size: 1.2rem;
 }
 
+button:hover {
+  opacity: 0.7;
+}
 /* Weather box popping up */
 .main-weather-box {
   background: #000000;
@@ -74,8 +76,9 @@ button {
   border-radius: 10px;
   border: 2px solid white;
   height: auto;
-  width: 600px;
+  width: 580px;
   margin: 0 auto;
+  padding: 20px;
 }
 
 .next-day-box-group {
@@ -83,14 +86,25 @@ button {
   justify-content: space-between;
   gap: 10px;
   color: black;
-  height: 300px;
-  width: 600px;
+  height: auto;
+  width: 620px;
 }
 
 .next-day-box {
-  background-color: white;
-  color: black;
+  background: #000000;
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(43, 43, 43, 1) 100%
+  );
+  color: white;
   border-radius: 10px;
+  border: 2px solid white;
   height: auto;
   width: 100%;
+  padding: 20px;
+}
+
+.error-message{
+  color: white;
 }
