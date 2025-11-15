@@ -1,10 +1,22 @@
 export const input = document.querySelector("#location-input");
 const content = document.querySelector("#container");
 
+// Clear ONLY the weather UI, not input/buttons
+export function clearWeather() {
+  const oldWeather = document.querySelector(".weather-wrapper");
+  if (oldWeather) oldWeather.remove();
+}
+
 // Display Weather UI
 export function updateWeather(data) {
-  console.log(data);
-  // Display Main weather box
+  // Remove previous weather UI
+  clearWeather();
+
+  // Create a wrapper for ALL weather elements
+  const wrapper = document.createElement("div");
+  wrapper.classList.add("weather-wrapper");
+
+  // ----- Main weather box -----
   const mainWeatherBox = document.createElement("div");
   mainWeatherBox.classList.add("main-weather-box");
 
@@ -28,28 +40,25 @@ export function updateWeather(data) {
   const uvIndex = document.createElement("p");
   uvIndex.textContent = `UV-index: ${data.currentConditions.uvindex}`;
 
-  // Small, next day boxes
+  // ----- Next day boxes -----
   const nextDayBoxGroup = document.createElement("div");
   nextDayBoxGroup.classList.add("next-day-box-group");
 
-  // Loop through next 5 days
   for (let i = 1; i <= 5; i++) {
     const box = document.createElement("div");
     box.classList.add("next-day-box");
 
     const day = document.createElement("p");
-    day.classList.add("small-day-date");
     day.textContent = data.days[i].datetime;
 
     const temp = document.createElement("p");
-    temp.classList.add("small-day-temp");
     temp.textContent = `${data.days[i].temp} °C`;
 
     box.append(day, temp);
     nextDayBoxGroup.appendChild(box);
   }
 
-  // Append elements
+  // Append to wrapper
   mainWeatherBox.append(
     location,
     currentDate,
@@ -59,12 +68,22 @@ export function updateWeather(data) {
     uvIndex
   );
 
-  content.appendChild(mainWeatherBox);
-  content.appendChild(nextDayBoxGroup);
+  wrapper.append(mainWeatherBox, nextDayBoxGroup);
+
+  // Add wrapper to container BELOW your input + button
+  content.appendChild(wrapper);
 }
 
-export function showError() {
-  console.log("Error");
-}
+export function showError(message = "Invalid location.") {
+  clearWeather();
 
-export function clearWeather() {}
+  const wrapper = document.createElement("div");
+  wrapper.classList.add("weather-wrapper");
+
+  const error = document.createElement("p");
+  error.classList.add("error-message");
+  error.textContent = message;
+
+  wrapper.appendChild(error);
+  content.appendChild(wrapper);
+}
